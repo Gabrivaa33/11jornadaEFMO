@@ -799,13 +799,13 @@
       }
 
       // MODIFICADO: Función para renderizar el banquillo (ahora incluye tarjetas)
-      function renderBench() {
-        const benchContainer = document.getElementById('bench-container');
-        benchContainer.innerHTML = '';
+     // function renderBench() {
+       // const benchContainer = document.getElementById('bench-container');
+       // benchContainer.innerHTML = '';
 
-        benchPlayers.forEach(player => {
-          const benchPlayerElement = document.createElement('div');
-          benchPlayerElement.className = 'bench-player-responsive';
+       // benchPlayers.forEach(player => {
+         // const benchPlayerElement = document.createElement('div');
+         // benchPlayerElement.className = 'bench-player-responsive';
 
           // Crear HTML para estadísticas de goles, asistencias y tarjetas del banquillo
           let statsHTML = '';
@@ -819,19 +819,19 @@
                 ${cardsText}${goalsText}${assistsText}
               </div>
             `;
-          }
-
-          benchPlayerElement.innerHTML = `
-            <div class="bench-player-info-responsive">
-              <div class="bench-player-number-responsive">${player.number}</div>
-              <div class="bench-player-name-responsive">${player.name}</div>
-            </div>
-            ${statsHTML}
-            <div class="bench-player-rating-responsive">${player.rating}</div>
-          `;
-
-          benchContainer.appendChild(benchPlayerElement);
           });
+
+         // benchPlayerElement.innerHTML = `
+           // <div class="bench-player-info-responsive">
+             // <div class="bench-player-number-responsive">${player.number}</div>
+             // <div class="bench-player-name-responsive">${player.name}</div>
+           // </div>
+           // ${statsHTML}
+           // <div class="bench-player-rating-responsive">${player.rating}</div>
+         // `;
+
+         // benchContainer.appendChild(benchPlayerElement);
+         // });
         
           // Aplicar colores a los ratings del banquillo
         document.querySelectorAll('.bench-player-rating-responsive').forEach(ratingElement => {
