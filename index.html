@@ -56,15 +56,18 @@
       border-radius: 8px;
       background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
       overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
     }
 
+    /* CÉSPED COMO EL ORIGINAL */
     .grass-pattern-responsive {
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
       background-size: 30px 30px;
+      opacity: 0.3;
     }
 
     .players-formation-responsive {
@@ -100,6 +103,7 @@
       font-weight: bold;
       border: 2px solid white;
       z-index: 2;
+      position: relative;
     }
 
     .player-name-responsive {
@@ -108,23 +112,34 @@
       text-align: center;
       max-width: 70px;
       font-weight: bold;
+      line-height: 1.1;
     }
 
+    /* ESTADÍSTICAS ARRIBA DEL CÍRCULO */
     .player-stats-right {
-      position: absolute;
-      left: 45px;
-      top: -5px;
-      font-size: 0.9rem;
-      line-height: 1;
-    }
+  position: absolute;
+  left: 48px;
+  top: -10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  font-size: 0.85rem;
+  line-height: 1;
+  z-index: 3;
+}
 
-    .player-stats-left {
-      position: absolute;
-      right: 45px;
-      top: -5px;
-      font-size: 0.9rem;
-      line-height: 1;
-    }
+.player-stats-left {
+  position: absolute;
+  right: 48px;
+  top: -10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.85rem;
+  line-height: 1;
+  z-index: 3;
+}
   </style>
 </head>
 <body>
@@ -193,16 +208,18 @@ function renderFormation() {
       const playerElement = document.createElement('div');
       playerElement.className = 'player-responsive';
 
-      const rightStats =
-        `${'⚽'.repeat(player.goals)}${'🅰️'.repeat(player.assists)}`;
-
+      const goalsHTML = player.goals > 0 ? `<div>${'⚽'.repeat(player.goals)}</div>` : '';
+      const assistsHTML = player.assists > 0 ? `<div>${'🅰️'.repeat(player.assists)}</div>` : '';
       const leftStats = player.cards;
 
       playerElement.innerHTML = `
         <div class="player-stats-left">${leftStats}</div>
+        <div class="player-stats-right">
+        ${goalsHTML}
+        ${assistsHTML}
+        </div>
         <div class="player-circle-responsive">${player.number}</div>
         <div class="player-name-responsive">${player.name}</div>
-        <div class="player-stats-right">${rightStats}</div>
       `;
 
       row.appendChild(playerElement);
