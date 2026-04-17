@@ -124,9 +124,14 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
+  z-index: 3;
   font-size: 0.85rem;
   line-height: 1;
-  z-index: 3;
+}
+
+.player-goals-row,
+.player-assists-row {
+  white-space: nowrap;
 }
 
 .player-stats-left {
@@ -208,8 +213,13 @@ function renderFormation() {
       const playerElement = document.createElement('div');
       playerElement.className = 'player-responsive';
 
-      const goalsHTML = player.goals > 0 ? `<div>${'⚽'.repeat(player.goals)}</div>` : '';
-      const assistsHTML = player.assists > 0 ? `<div>${'🅰️'.repeat(player.assists)}</div>` : '';
+      const goalsHTML = player.goals > 0 
+  ? `<div class="player-goals-row">${'⚽'.repeat(player.goals)}</div>` 
+  : '';
+
+const assistsHTML = player.assists > 0 
+  ? `<div class="player-assists-row">${'🅰️'.repeat(player.assists)}</div>` 
+  : '';
       const leftStats = player.cards;
 
       playerElement.innerHTML = `
